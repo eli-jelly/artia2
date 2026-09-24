@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!--css links-->
+    <link rel="stylesheet" href="style_sheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
+    <title>Document</title>
+</head>
+<body>
+    <!--nav bar-->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="report.html" class="nav-item active">
+            <i class="fa-solid fa-clipboard"></i>
+            <span>Report</span>
+        </a>
+
+        <a href="library.html"  class="nav-item">
+            <i class="fa-solid fa-marker"></i>
+            <span>Library</span>
+        </a>
+
+        <a href="about.html" class="nav-item">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>About</span>
+        </a>
+    </div>
+
+    <div class="header-report">
+        
+    </div>
+
+    <h1>Interior Design AI Test</h1>
+
+    <!--content-->
+    <section>
+        <div class="text-input-row">
+            <input type="text" id="prompt" placeholder="Type something here" />
+        </div>
+        <div class="img-input-row">
+            <input type="file" id="image" multiple />
+        </div>
+
+        <div class="send-row">
+            <button id="sendBtn" type="button">Send</button>
+        </div>
+
+        <p class="result-title"><strong>Result:</strong></p>
+        <div id="output">Nothing yet! <br> Attach your inspo images and your additional question/request and submit to recieve your personalised report!</div>
+        <div id="result" class="report"></div>
+    </section>
+
+    <div class="save-report-container d-flex justify-content-center align-items-center mb-5">
+        <button id="saveReportBtn" class="save-report-button">SAVE TO LIBRARY</button>
+    </div>
+    
+    <!--top button-->
+    <button id="topBtn" title="Go to top">Go to top 🡅</button>
+
+    <!--footer-->
+    <footer>
+        <div class="c3 footer d-flex justify-content-center align-items-center text-center p-4">
+            <div>
+                <h2>Artia @OGHS</h2>
+                <p>The ultimate interior design app created by Eliya Rosman</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="report.js"></script>
+    <script type="module" src="script.js"></script>
+
+
+</body>
+</html>
