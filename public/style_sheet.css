@@ -1,8 +1,18 @@
 body {
   margin: 0;
-  padding: 0;
-  padding-bottom: 80px;
   background-color: #fffdf7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/*Footer*/
+footer {
+  margin-top: auto;
 }
 
 .footer {
@@ -10,11 +20,20 @@ body {
   color: #f1ecde;
 }
 
+.footer a{
+  color: #fde8e8;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #d9dadb;
+}
+
 .row{
   margin: 0;
 }
 
-/* font */
+/*Font*/
 .playfair {
   font-family: "Playfair Display", serif;
   font-weight: 400;
@@ -345,6 +364,7 @@ a {
   font-family: "Playfair Display", serif;
   text-align: center;
   margin-bottom: 190px;
+  padding: 0 30px;
 }
 
 .send-row {
@@ -939,6 +959,10 @@ main:has(.willem-header.is--loading) {
 }
 
 /*library*/
+.library-main {
+  min-height: calc(100vh - 75px - 140px);
+}
+
 .library-page-background{
   background-color: white;
 }
