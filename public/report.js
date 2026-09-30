@@ -104,7 +104,12 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
 
   catch (error) {
     console.error("script error:", error);
-    output.textContent = "Error: " + error.message;
+    if (error.message.includes("503") || error.message.includes("high demand")) {
+      output.textContent = "The API AI service is busy right now. Please try again in a moment.";
+    }
+    else {
+      output.textContent = "Something went wrong. Please try again.";
+    }
   }
 });
 
@@ -112,7 +117,14 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
 
 saveReportBtn.addEventListener("click", async () => {
   if (!auth.currentUser) {
-    window.location.href = "connect.html";
+    const connectNow = confirm(
+      "You need to log in or create an account to save this report. Open the Connect page?"
+    );
+
+    if (connectNow) {
+      window.open("connect.html", "_blank");
+    }
+
     return;
   }
   // prevents saving the same report twice

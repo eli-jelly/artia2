@@ -50,32 +50,44 @@ logoutButton.addEventListener("click", async () => {
 async function loadReports(userId) {
 
   const reportsContainer = document.getElementById("reportsContainer");
+
+  // Shows while Firebase is loading the reports
+  reportsContainer.innerHTML = "<p>Loading your reports...</p>";
+
   const reportsQuery = query(
     collection(db, "reports"), 
     where("userId", "==", userId), 
     orderBy("createdAt", "desc")
   );
-  const querySnapshot = await getDocs(reportsQuery);
 
-  reportsContainer.innerHTML = "";
+  try {
+    const querySnapshot = await getDocs(reportsQuery);
 
-  querySnapshot.forEach((doc) => {
-    const report = doc.data();
-    const reportId = doc.id;
-    const reportCard = document.createElement("div");
-    reportCard.className = "report-card";
+    // Removes loading message once reports are ready
+    reportsContainer.innerHTML = "";
 
-    reportCard.innerHTML = `
-      <small class="report-date">${new Date(report.createdAt).toLocaleDateString()}</small>
-      <p>${report.result.substring(0, 150)}...</p>
-      <h3>Click for full report</h3>
+    querySnapshot.forEach((doc) => {
+      const report = doc.data();
+      const reportId = doc.id;
 
-    `;
+      const reportCard = document.createElement("div");
+      reportCard.className = "report-card";
 
-    reportCard.addEventListener("click", () => {
-      window.location.href = `saved-report.html?id=${reportId}`;
+      reportCard.innerHTML = `
+        <small class="report-date">${new Date(report.createdAt).toLocaleDateString()}</small>
+        <p>${report.result.substring(0, 150)}...</p>
+        <h3>Click for full report</h3>
+      `;
+
+      reportCard.addEventListener("click", () => {
+        window.location.href = `saved-report.html?id=${reportId}`;
+      });
+
+      reportsContainer.appendChild(reportCard);
     });
 
-    reportsContainer.appendChild(reportCard);
-  });
+  } catch (error) {
+    console.error("Error loading reports:", error);
+    reportsContainer.innerHTML = "<p>Could not load your reports. Please try again.</p>";
+  }
 }
