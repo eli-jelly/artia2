@@ -27,12 +27,10 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
   // max images is 5 feedback
   if (imageInput.files.length > 5) {
     output.textContent = "You can upload a maximum of 5 images.";
-
     currentReport = "";
     currentPrompt = "";
     currentImageCount = 0;
     saveReportBtn.style.display = "none";
-
     return;
   }
 
@@ -40,20 +38,30 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
   for (const file of imageInput.files) {
     if (!file.type.startsWith("image/")) {
       output.textContent = "Please upload image files only.";
-
       currentReport = "";
       currentPrompt = "";
       currentImageCount = 0;
       saveReportBtn.style.display = "none";
-
       return;
     }
   }
+
+  // sending nothing check
+  if (imageInput.files.length === 0 && prompt.trim() === "") {
+    output.textContent = "Please upload an image or enter a request first.";
+    currentReport = "";
+    currentPrompt = "";
+    currentImageCount = 0;
+    saveReportBtn.style.display = "none";
+    return;
+  }
+
+  
   //testing
   console.log("clicked");
   console.log("prompt:", prompt);
   console.log("files:", imageInput.files.length);
-
+  
   output.textContent = "Loading...";
 
   // creates the form data, 
