@@ -991,6 +991,7 @@ main:has(.willem-header.is--loading) {
   font-family: "Playfair Display", serif;
   font-weight: bold;
   transition: 0.3s;
+  z-index: 99;
   position: fixed;
   top: 14px;
   left: 12px;

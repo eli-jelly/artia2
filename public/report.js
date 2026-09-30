@@ -11,6 +11,9 @@ let currentReport = "";
 let currentPrompt = "";
 let currentImageCount = 0;
 
+let reportSaved = false;
+let isSaving = false;
+
 // Waiting for user to click the button, and prevent page from refreshing
 document.getElementById("sendBtn").addEventListener("click", async (event) => {
   event.preventDefault();
@@ -90,6 +93,7 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
     currentReport = data.result;
     currentPrompt = prompt;
     currentImageCount = imageInput.files.length;
+    reportSaved = false;
 
     /*Show save button because a report now exists*/
     saveReportBtn.style.display = "inline-block";
@@ -108,9 +112,20 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
 
 saveReportBtn.addEventListener("click", async () => {
   if (!auth.currentUser) {
-    window.location.href ="connect.html";
+    window.location.href = "connect.html";
     return;
   }
+  // prevents saving the same report twice
+  if (reportSaved) {
+    alert("This report has already been saved!");
+    return;
+  }
+  // prevents very fast double-clicks while firebase is still saving
+  if (isSaving) {
+    return;
+  }
+  isSaving = true;
+  saveReportBtn.disabled = true;
 
   try {
     await addDoc(collection(db, "reports"), {
@@ -120,11 +135,14 @@ saveReportBtn.addEventListener("click", async () => {
       imageCount: currentImageCount,
       createdAt: new Date().toISOString()
     });
+    reportSaved = true;
     alert("Report saved to your library!");
   } 
   catch (error) {
     console.error("Error saving report:", error);
     alert("Could not save report. Please try again.");
   }
+  isSaving = false;
+  saveReportBtn.disabled = false;
 });
 
