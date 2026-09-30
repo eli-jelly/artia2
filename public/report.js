@@ -117,14 +117,8 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
 
 saveReportBtn.addEventListener("click", async () => {
   if (!auth.currentUser) {
-    const connectNow = confirm(
-      "You need to log in or create an account to save this report. Open the Connect page?"
-    );
-
-    if (connectNow) {
-      window.open("connect.html", "_blank");
-    }
-
+    alert("Please log in or create an account to save your report.");
+    window.location.href = "connect.html";
     return;
   }
   // prevents saving the same report twice
