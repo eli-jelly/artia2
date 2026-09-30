@@ -141,52 +141,6 @@ a {
 
 /*home page*/
 /*banner*/
-/*.banner-home {
-  position: relative;
-  width: 86%;
-  max-width: 1400px;
-  height: 500px;
-  margin: 100px auto;
-  padding: 5px;
-  text-align: center;
-}
-
-.banner-home h1 {
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
-  font-style: bold;
-  color: #320a0a;
-  padding: 10px;
-  background-color: #f1ecde7d;
-  border-radius: 20px;
-}
-
-.banner-home p {
-  font-family: "Playfair Display", serif;
-  font-weight: 600; 
-  font-size: 17px;
-  color: #320a0a;
-  background-color: #f1ecdeb9;
-  border-radius: 20px;
-  padding: 30px 30px 10px;
-  height: 230px;
-  justify-content: center;
-}
-
-.banner-home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url(digi-img/digi-interior9.jpg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.9;
-  z-index: -1;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 30px;
-}*/
-
 .banner-home {
   position: relative;
   width: 86%;
