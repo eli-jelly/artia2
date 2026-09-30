@@ -66,9 +66,10 @@ async function loadReports(userId) {
     reportCard.className = "report-card";
 
     reportCard.innerHTML = `
-      <h3>Saved Report</h3>
-      <p>${report.result.substring(0, 150)}...</p>
       <small class="report-date">${new Date(report.createdAt).toLocaleDateString()}</small>
+      <p>${report.result.substring(0, 150)}...</p>
+      <h3>Click for full report</h3>
+
     `;
 
     reportCard.addEventListener("click", () => {

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   background-color: #fffdf7;
   min-height: 100vh;
   display: flex;
@@ -64,7 +65,7 @@ h1 {
   display: flex;
   bottom: 0;
   width: 100%;
-  height: 75px;
+  height: 80px;
   background: #f1ecde;
   justify-content: space-around;
   align-items: center;
@@ -925,6 +926,7 @@ main:has(.willem-header.is--loading) {
   background-image: url("digi-img/digi-interior15.jpg");
   background-size: cover;
   background-position: center;
+  
 }
 
 .signup-row {
@@ -964,7 +966,12 @@ main:has(.willem-header.is--loading) {
 }
 
 .library-page-background{
-  background-color: white;
+  /*background-color: white;*/
+  background-image: url(digi-img/Untitled\ design.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .lock-img {
@@ -1038,6 +1045,8 @@ main:has(.willem-header.is--loading) {
 .report-card {
   padding: 20px;
   margin: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
   border-radius: 20px;
   cursor: pointer;
   max-width: 320px;
@@ -1045,7 +1054,14 @@ main:has(.willem-header.is--loading) {
 
 .report-card h3{
   font-weight: bold;
-  color: #1e4176;
+  font-size: 15px;
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #1e4176;
+  color: #f1ecde;
+  text-decoration: none;
+  border-radius: 30px;
+
 }
 
 .report-card p {
@@ -1054,7 +1070,7 @@ main:has(.willem-header.is--loading) {
 
 .report-date {
   color: #74070d;
-  font-size: 18px;
+  font-size: 28px;
   font-style: italic;
 }
 

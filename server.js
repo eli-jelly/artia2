@@ -91,10 +91,9 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
     const imageParts = [];
 
-    // Converting images into a readable format for Gemini
+    // converting images into a format Gemini can read
     for (const file of req.files || []) {
       const base64Image = file.buffer.toString("base64");
-
       imageParts.push({
         inlineData: {
           data: base64Image,
@@ -102,10 +101,9 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
         },
       });
     }
-
     console.log("calling gemini");
 
-    // Sending the user's prompt and image to Gemini
+    // sending the user's prompt and image to Gemini
     const result = await model.generateContent([
       fullPrompt,
       ...imageParts
@@ -113,12 +111,12 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
 
     console.log("gemini returned");
 
-    // Getting Gemini's responds
+    // getting Gemini's responds back
     const response = await result.response;
     const text = response.text();
-
     res.json({ result: text });
   } 
+
   catch (error) {
     console.error("server error:", error);
     res.status(500).json({ error: error.message });

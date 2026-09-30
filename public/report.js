@@ -20,7 +20,7 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
   const imageInput = document.getElementById("image");
   const output = document.getElementById("output");
 
-  //(testing)
+  //testing
   console.log("clicked");
   console.log("prompt:", prompt);
   console.log("files:", imageInput.files.length);
