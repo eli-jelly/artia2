@@ -7,9 +7,17 @@ console.log("NEW SCRIPT LOADED");
 
 const saveReportBtn = document.getElementById("saveReportBtn");
 
-let currentReport = "";
-let currentPrompt = "";
-let currentImageCount = 0;
+if (imageInput.files.length > 5) {
+  output.textContent = "You can upload a maximum of 5 images.";
+
+  currentReport = "";
+  currentPrompt = "";
+  currentImageCount = 0;
+
+  saveReportBtn.style.display = "none";
+
+  return;
+}
 
 // Waiting for user to click the button, and prevent page from refreshing
 document.getElementById("sendBtn").addEventListener("click", async (event) => {
@@ -19,6 +27,12 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
   const prompt = document.getElementById("prompt").value;
   const imageInput = document.getElementById("image");
   const output = document.getElementById("output");
+  
+  // max images is 5 feedback
+  if (imageInput.files.length > 5) {
+    output.textContent = "You can upload a maximum of 5 images.";
+    return;
+  }
 
   //testing
   console.log("clicked");
