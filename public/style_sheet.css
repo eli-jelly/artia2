@@ -191,7 +191,7 @@ a {
   position: relative;
   width: 86%;
   max-width: 1400px;
-  height: 520px;
+  height: 600px;
   margin: 100px auto;
   padding: 5px;
   text-align: center;
@@ -214,8 +214,7 @@ a {
   color: #1e4176;
   background-color: #f1ecde86;
   border-radius: 20px;
-  padding: 30px 30px 10px;
-  height: 260px;
+  padding: 30px 30px 30px;
   justify-content: center;
 }
 
