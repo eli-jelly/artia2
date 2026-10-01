@@ -7,8 +7,6 @@ const libraryContent = document.getElementById("libraryContent");
 const libraryLock = document.getElementById("libraryLock");
 
 
-
-// you need to describe the function of the code, what arguments deoes it take, and what value does it return
 onAuthStateChanged(auth, (user) => {
   /*when user is signed in*/
   if (user) {

@@ -78,7 +78,7 @@ loginForm.addEventListener("submit", async (event) => {
   password.setCustomValidity("");
 
   try {
-    const userCredential = await signInWithEmailAndPassword(
+    await signInWithEmailAndPassword(
         auth,
         email.value,
         password.value
@@ -105,73 +105,3 @@ loginForm.addEventListener("submit", async (event) => {
     }
   }
 });
-
-
-
-
-
-
-// variables
-// fuctions 
-// run time stuff calling your functions
-
-
-
-
-
-
-
-
-/*password.addEventListener("input", () => {
-    const length = password.value.length;
-    if (length === 0) {
-        passwordHint.textContent = "";
-        passwordHint.className = "password-hint";
-    }
-    else if (length < 6) {
-        passwordHint.textContent = "Password must be at least 6 characters.";
-        passwordHint.className = "password-hint password-invalid";
-    }
-    else {
-        passwordHint.textContent = "✓ Password looks good!";
-        passwordHint.className = "password-hint password-valid";
-    }
-});
- password.addEventListener("input", () => {
-  password.setCustomValidity("");
-});
-
-
-const email = document.getElementById("email");
-
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (password.value.length < 6) {
-    password.setCustomValidity(
-      "Password must contain at least 6 characters."
-    );
-    password.reportValidity();
-    return;
-  }
-
-  if (password.value.includes(" ")) {
-    password.setCustomValidity(
-      "Password cannot contain spaces."
-    );
-    password.reportValidity();
-    return;
-  }
-
-  password.setCustomValidity("");
-
-  try {
-    const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email.value,
-        password.value
-    );
-
-  alert("Welcome back!");
-  window.location.href = "library.html";
-  } */

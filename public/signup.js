@@ -78,13 +78,12 @@ signupForm.addEventListener("submit", async (event) => {
     }
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email.value,
-        password.value
+        await createUserWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
         );
-
-        console.log("Account created:", userCredential.user);
+        
         alert("Account created successfully!");
 
         window.location.href = "library.html";

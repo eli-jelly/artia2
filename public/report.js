@@ -1,9 +1,7 @@
-// This js file mainly controls what happens when the user click send
+// this js file mainly controls what happens when the user click send
 
-// FireBase
+// importing fireBase
 import { db, auth, collection, addDoc } from "./firebase.js";
-
-console.log("NEW SCRIPT LOADED");
 
 const saveReportBtn = document.getElementById("saveReportBtn");
 
@@ -55,12 +53,6 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
     saveReportBtn.style.display = "none";
     return;
   }
-
-  
-  //testing
-  console.log("clicked");
-  console.log("prompt:", prompt);
-  console.log("files:", imageInput.files.length);
   
   output.textContent = "Loading...";
 
@@ -76,19 +68,13 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
       formData.append("images", imageInput.files[i]);
     }
 
-    console.log("sending request");
-
     // Sending data to the backend
     const response = await fetch("/analyze-room", {
       method: "POST",
       body: formData
     });
 
-    console.log("got response status:", response.status);
-
     const data = await response.json();
-    console.log("response data:", data);
-
     if (!response.ok) {
       throw new Error(data.error || "Something went wrong");
     }

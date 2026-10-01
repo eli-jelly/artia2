@@ -1,7 +1,6 @@
 require("dotenv").config();
-console.log("server file started");
 
-// Importing the backend tools
+// importing the backend tools
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
@@ -27,10 +26,9 @@ app.post("/analyze-room", upload.array("images", 5), async (req, res) => {
     console.log("request reached server");
     console.log("prompt:", req.body.prompt);
     console.log("files:", req.files ? req.files.length : 0);
-
     const userPrompt = req.body.prompt || "";
 
-    // These are the instructions that I sent to AI
+    // these are the instructions that I sent to AI
     const fullPrompt =  `
 You are an interior design expert.
 
@@ -106,15 +104,12 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
         },
       });
     }
-    console.log("calling gemini");
 
     // sending the user's prompt and image to Gemini
     const result = await model.generateContent([
       fullPrompt,
       ...imageParts
     ]);
-
-    console.log("gemini returned");
 
     // getting Gemini's responds back
     const response = await result.response;
@@ -128,9 +123,7 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
   }
 });
 
-console.log("about to start server");
-
-// Starting the backend server
+// starting the backend server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {

@@ -92,7 +92,6 @@ h1 {
 .nav-item.active {
   color: #46462a;
   text-decoration: none;
-  color: #46462a;
   font-family: "Playfair Display", serif;
   font-size: 25px;
   display: flex;
@@ -257,7 +256,6 @@ a {
 
 .col-img {
   width: 100%;
-  max-width: 1050px;
   aspect-ratio: 1.2 / 1;
   object-fit: cover;
   border-radius: 30px;
@@ -340,16 +338,6 @@ a {
 #sendBtn:hover {
   background-color: #74070d;
   color: #f1ecde;
-}
-
-.input-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 20px auto;
-  padding: 10px;
-  flex-wrap: wrap;
 }
 
 #prompt {
@@ -843,16 +831,12 @@ main:has(.willem-header.is--loading) {
   min-height: 20px;
 }
 
-.login-submit {
-  padding: 8px 20px;
-  white-space: nowrap;
-}
-
 .login-header {
   margin-top: 70px;
 }
 
 .login-submit {
+  white-space: nowrap;
   background-color: #46462a;
   color: #f1ecde; 
   cursor: pointer;
@@ -899,17 +883,13 @@ main:has(.willem-header.is--loading) {
   max-width: 100%;
 }
 
-.signup-submit {
-  padding: 8px 20px;
-  white-space: nowrap;
-}
-
 .signup-header {
   margin-top: 70px;
   color: #1e4176;
 }
 
 .signup-submit {
+  white-space: nowrap;
   background-color: #46462a;
   color: #f1ecde; 
   cursor: pointer;
