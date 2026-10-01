@@ -706,7 +706,7 @@ main:has(.willem-header.is--loading) {
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 1000px;
+  min-height: 1000px;
   padding-top: 0;
   display: flow-root;
   box-sizing: border-box;
@@ -718,9 +718,16 @@ main:has(.willem-header.is--loading) {
 
 .signin-img {
   display: block;
-  margin: -50px auto 0;
-  max-width: 80%;
+  margin: 10px auto 0;
+  width: 80%;
+  max-width: 300px;
   height: auto;
+}
+
+@media (min-width: 768px) {
+  .signin-img {
+    max-width: 400px;
+  }
 }
 
 .account-buttons {
@@ -765,8 +772,7 @@ main:has(.willem-header.is--loading) {
 }
 
 .guide-message-signin {
-  font-weight: 400;
-  
+  max-width: 500px;  
 }
 
 .back-button {
@@ -880,7 +886,6 @@ main:has(.willem-header.is--loading) {
   background-image: url("digi-img/digi-interior15.jpg");
   background-size: cover;
   background-position: center;
-  
 }
 
 .signup-row {
@@ -920,8 +925,7 @@ main:has(.willem-header.is--loading) {
 }
 
 .library-page-background{
-  /*background-color: white;*/
-  background-image: url(digi-img/Untitled\ design.png);
+  background-image: url(digi-img/library-background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -930,8 +934,9 @@ main:has(.willem-header.is--loading) {
 
 .lock-img {
   display: block;
-  margin: -70px auto 0;
-  max-width: 80%;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 300px;
   height: auto;
 }
 
@@ -960,6 +965,21 @@ main:has(.willem-header.is--loading) {
   color: #3d0b0b;
 }
 
+.empty-library-message {
+  text-align: center;
+  color: #1e4176;
+  font-size: 22px;
+  margin-top: 40px;
+  background-color: #f1ecde;
+  padding: 10px 10px;
+}
+
+.content-library {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .library-content.locked {
   opacity: 0.5;
   filter: blur(2px);
@@ -969,12 +989,15 @@ main:has(.willem-header.is--loading) {
 .library-lock {
   display: none;
   position: fixed;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px;
   z-index: 10;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  overflow-y: auto;
 }
 
 .library-lock.show {

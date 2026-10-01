@@ -51,7 +51,7 @@ async function loadReports(userId) {
 
   const reportsContainer = document.getElementById("reportsContainer");
 
-  // Shows while Firebase is loading the reports
+  // shows this while Firebase is loading the reports
   reportsContainer.innerHTML = "<p>Loading your reports...</p>";
 
   const reportsQuery = query(
@@ -63,8 +63,13 @@ async function loadReports(userId) {
   try {
     const querySnapshot = await getDocs(reportsQuery);
 
-    // Removes loading message once reports are ready
+    // removes loading message once reports are ready
     reportsContainer.innerHTML = "";
+  
+    if (querySnapshot.empty) {
+      reportsContainer.innerHTML =  '<h3 class="empty-library-message">You haven\'t saved any reports yet.</h3>';
+      return;
+    }
 
     querySnapshot.forEach((doc) => {
       const report = doc.data();
@@ -86,7 +91,8 @@ async function loadReports(userId) {
       reportsContainer.appendChild(reportCard);
     });
 
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error loading reports:", error);
     reportsContainer.innerHTML = "<p>Could not load your reports. Please try again.</p>";
   }
