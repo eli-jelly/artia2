@@ -1,3 +1,4 @@
+// loads environment variables(including the Gemini API key)
 require("dotenv").config();
 
 // importing the backend tools
@@ -9,6 +10,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
+// controls the image uploads
+// limits them to max 5 images & 10MB each
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -18,9 +21,14 @@ const upload = multer({
 });
 app.use(cors());
 
-// Conects Gemini- the ai that will be used
+// connects to Gemini by using the API key stored in the environment variables
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+// receives the user's images and additinal prompt
+// sends them to Gemini
+// then returns the AI result report
+// req contains the data sent from report.js 
+// and res is used to send the result back
 app.post("/analyze-room", upload.array("images", 5), async (req, res) => {
   try {
     console.log("request reached server");
@@ -105,18 +113,20 @@ Do not use Markdown formatting. Do not use asterisks, hashtags, or bullet symbol
       });
     }
 
-    // sending the user's prompt and image to Gemini
+    // sending the instructions, including user's additional prompt, and uploaded images to Gemini
     const result = await model.generateContent([
       fullPrompt,
       ...imageParts
     ]);
 
-    // getting Gemini's responds back
+    // getting Gemini's responds back4
+    // also sends the result back to report.js as JSON
     const response = await result.response;
     const text = response.text();
     res.json({ result: text });
   } 
 
+  // sends an error response back to report.js if something went wrong
   catch (error) {
     console.error("server error:", error);
     res.status(500).json({ error: error.message });

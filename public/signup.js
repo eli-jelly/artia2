@@ -1,15 +1,13 @@
-/*Import of authentication*/
+// importing authentication
 import { auth } from "./firebase.js";
-
-import {
-  createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-/*Allowing user to hide and show the password*/
+// allowing user to hide and show the password with the eye toggle
 const password = document.getElementById("password");
 const togglePassword = document.getElementById("togglePassword");
 
+// runs when user clicks the eye icon to switch between visible and hidden
 togglePassword.addEventListener("click", () => {
     if (password.type === "password") {
         password.type = "text";
@@ -23,11 +21,11 @@ togglePassword.addEventListener("click", () => {
     }
 });
 
-
-
 const signupForm = document.getElementById("signupForm");
 const passwordHint = document.getElementById("passwordHint");
 
+// checks the password live to make sure it has at least 6 characters & doesn't contain spaces
+// the input event runs every time the user changes the password (deletes, adds, replaces characters)
 password.addEventListener("input", () => {
     password.setCustomValidity("");
 
@@ -58,6 +56,8 @@ password.addEventListener("input", () => {
 
 const email = document.getElementById("email");
 
+// validates the password 
+// then uses firebase authentication to create the user's account
 signupForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -68,7 +68,6 @@ signupForm.addEventListener("submit", async (event) => {
         password.reportValidity();
         return;
     }
-
     if (password.value.includes(" ")) {
         password.setCustomValidity(
         "Password cannot contain spaces."
@@ -77,6 +76,7 @@ signupForm.addEventListener("submit", async (event) => {
         return;
     }
 
+    // creating the account using the email and password entered by the user
     try {
         await createUserWithEmailAndPassword(
             auth,
@@ -85,11 +85,10 @@ signupForm.addEventListener("submit", async (event) => {
         );
         
         alert("Account created successfully!");
-
         window.location.href = "library.html";
     } 
 
-    
+    // showing different messages depenting on the firebase signup errors
     catch (error) {
         console.error("Signup error:", error);
 

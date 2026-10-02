@@ -1,3 +1,4 @@
+/*General*/
 body {
   margin: 0;
   padding: 0;
@@ -10,6 +11,17 @@ body {
 main {
   flex: 1;
 }
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 25px;
+  color: #74070d;
+  font-weight: 900;
+}
+
 
 /*Footer*/
 footer {
@@ -34,6 +46,7 @@ footer a:hover {
   margin: 0;
 }
 
+
 /*Font*/
 .playfair {
   font-family: "Playfair Display", serif;
@@ -41,25 +54,8 @@ footer a:hover {
   font-style: normal;
 }
 
-.header-report {
-  height: 80px;
-  width: 100%;
-  background-color: #46462a;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
 
-h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 80px;
-  margin-bottom: 25px;
-  color: #74070d;
-  font-weight: 900;
-}
-
-/* navbar at the bottom */
+/*Navbar at the bottom */
 .bottom-nav {
   position: fixed;
   display: flex;
@@ -114,13 +110,13 @@ a {
 }
 
 
-/*top button*/
+/*Top button*/
 #topBtn {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   bottom: 90px;
   right: 10px; 
-  z-index: 99; /* Make sure it does not overlap */
+  z-index: 99;
   font-family: "Playfair Display", serif;
   font-size: 17px;
   font-weight: bold;
@@ -138,7 +134,7 @@ a {
   border: solid #f1ecde;
 }
 
-/*home page*/
+/*Home page*/
 /*banner*/
 .banner-home {
   position: relative;
@@ -214,7 +210,7 @@ a {
 }
 
 
-/*about page*/
+/*About page*/
 .banner-about {
   border: none;
   background-image: url(digi-img/digi-interior13.jpg);
@@ -247,6 +243,7 @@ a {
   margin: 0;
 }
 
+/*column/row part*/
 .col-text {
   min-width: 320px;
   max-width: 410px;
@@ -277,7 +274,20 @@ a {
   margin-top: 0;
 }
 
-/* report page */
+
+/*Report page */
+.header-report {
+  height: 80px;
+  width: 100%;
+  background-color: #46462a;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.header-report h2{
+  color: #f1ecde;
+}
+
 .report {
   max-width: 700px;
   margin: 40px auto;
@@ -410,10 +420,397 @@ a {
   border: solid #1e4176;
 }
 
-/*animations*/
+
+/*Connecting page*/
+.content-signin {
+  border: none;
+  background-image: url(digi-img/digi-background1.png);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 1000px;
+  padding-top: 0;
+  display: flow-root;
+  box-sizing: border-box;
+}
+
+.content-signin h1 {
+  color: #1e4176;
+}
+
+.signin-img {
+  display: block;
+  margin: 10px auto 0;
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .signin-img {
+    max-width: 400px;
+  }
+}
+
+.account-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  flex-direction: column;
+}
+
+#log-in {
+  background-color: #3d0b0b;
+}
+
+#log-in:hover {
+  background-color: #f1ecde;
+  color: #3d0b0b;
+  border: solid #3d0b0b;
+}
+
+#sign-up {
+  background-color: #74070d;
+}
+
+#sign-up:hover {
+  background-color: #f1ecde;
+  color: #74070d;
+  border: solid #74070d;
+}
+
+.account {
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  color: #f1ecde;
+  cursor: pointer;
+  padding: 15px ;
+  border-radius: 40px;
+  border: none;
+  font-size: 15px;
+  width: 260px;
+}
+
+.guide-message-signin {
+  max-width: 500px;  
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1ecde;
+  color: #310f10;
+  text-decoration: none;
+  border-radius: 30px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  transition: 0.3s;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.password-container {
+  position: relative;
+  display: inline-block;
+}
+
+.password-container input {
+  padding-right: 40px; /* makes room for the eye */
+}
+
+#togglePassword {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.clear-card {
+  width: min(700px, 90vw);
+  min-height: 400px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+}
+
+
+/*Login page*/
+.login-background {
+  min-height: 100vh;
+  background-image: url("digi-img/digi-interior4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-row {
+  width: 100%;
+  padding: 0 25px;
+}
+
+.login-email,
+.login-password {
+  width: 220px;
+  max-width: 100%;
+}
+
+.password-hint {
+  font-size: 14px;
+  color: #46462a;
+  margin-top: 8px;
+  min-height: 20px;
+}
+
+.login-header {
+  margin-top: 70px;
+}
+
+.login-submit {
+  white-space: nowrap;
+  background-color: #46462a;
+  color: #f1ecde; 
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 20px;
+  font-size: 17px;
+  border: none;
+}
+
+.password-valid {
+  color: #1e4176;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #f1ecde96;
+  padding: 10px;
+  border-radius: 15px;
+
+}
+
+.password-invalid {
+  color: #74070d;
+  font-weight: bold;
+  background-color: #f1ecde96;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+
+/*Signup page*/
+.signup-background {
+  min-height: 100vh;
+  background-image: url("digi-img/digi-interior15.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.signup-row {
+  width: 100%;
+  padding: 0 25px;
+}
+
+.signup-email,
+.signup-password {
+  width: 220px;
+  max-width: 100%;
+}
+
+.signup-header {
+  margin-top: 70px;
+  color: #1e4176;
+}
+
+.signup-submit {
+  white-space: nowrap;
+  background-color: #46462a;
+  color: #f1ecde; 
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 20px;
+  font-size: 17px;
+  border: none;
+}
+
+
+/*Library page*/
+.library-main {
+  min-height: calc(100vh - 75px - 140px);
+}
+
+.library-page-background{
+  background-image: url(digi-img/library-background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.lock-img {
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+}
+
+.go-connect-button {
+  padding: 10px 20px;
+  background-color: #f1ecde;
+  color: #310f10;
+  text-decoration: none;
+  border-radius: 30px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.library-header h1{
+  font-size: 40px;
+}
+
+.library-header p{
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.library-header h2{
+  padding: 0 30px;
+  color: #3d0b0b;
+}
+
+.empty-library-message {
+  text-align: center;
+  color: #1e4176;
+  font-size: 22px;
+  margin-top: 40px;
+  background-color: #f1ecde;
+  padding: 10px 10px;
+}
+
+.content-library {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.library-content.locked {
+  opacity: 0.5;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.library-lock {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  z-index: 10;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.library-lock.show {
+  display: flex;
+}
+
+.logout-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #f1ecde;
+  color: #310f10;
+  text-decoration: none;
+  border-radius: 30px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 99;
+  position: fixed;
+  top: 14px;
+  left: 12px;
+}
+
+.report-card {
+  padding: 20px;
+  margin: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  cursor: pointer;
+  max-width: 320px;
+}
+
+.report-card h3{
+  font-weight: bold;
+  font-size: 15px;
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #1e4176;
+  color: #f1ecde;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+.report-card p {
+  margin-bottom: 2px;
+}
+
+.report-date {
+  color: #74070d;
+  font-size: 28px;
+  font-style: italic;
+}
+
+
+/*Saved-report pages*/
+#savedReport {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 30px;
+  line-height: 1.7;
+}
+
+#reportDate {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e4176;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.back-library-button {
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #46462a;
+  color: #f1ecde;
+  text-decoration: none;
+  border-radius: 30px;
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  font-weight: bold;
+  transition: 0.3s;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.back-library-button:hover {
+  background-color: #74070d;
+}
+
+
+
+/*Templated animations from GSAP*/
+
 /* ------- Osmo [https://osmo.supply/] ------- */
 /* Osmo UI: https://slater.app/10324/23333.css */
-
 body {
   background-color: #f4f4f4;
   font-family: "Playfair Display", serif;
@@ -685,387 +1082,4 @@ main:has(.willem-header.is--loading) {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
-
-/*connecting page*/
-.content-signin {
-  border: none;
-  background-image: url(digi-img/digi-background1.png);
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  min-height: 1000px;
-  padding-top: 0;
-  display: flow-root;
-  box-sizing: border-box;
-}
-
-.content-signin h1 {
-  color: #1e4176;
-}
-
-.signin-img {
-  display: block;
-  margin: 10px auto 0;
-  width: 80%;
-  max-width: 300px;
-  height: auto;
-}
-
-@media (min-width: 768px) {
-  .signin-img {
-    max-width: 400px;
-  }
-}
-
-.account-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-top: 40px;
-  flex-direction: column;
-}
-
-#log-in {
-  background-color: #3d0b0b;
-}
-
-#log-in:hover {
-  background-color: #f1ecde;
-  color: #3d0b0b;
-  border: solid #3d0b0b;
-}
-
-#sign-up {
-  background-color: #74070d;
-}
-
-#sign-up:hover {
-  background-color: #f1ecde;
-  color: #74070d;
-  border: solid #74070d;
-}
-
-.account {
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
-  color: #f1ecde;
-  cursor: pointer;
-  padding: 15px ;
-  border-radius: 40px;
-  border: none;
-  font-size: 15px;
-  width: 260px;
-}
-
-.guide-message-signin {
-  max-width: 500px;  
-}
-
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #f1ecde;
-  color: #310f10;
-  text-decoration: none;
-  border-radius: 30px;
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
-  transition: 0.3s;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-}
-
-.password-container {
-  position: relative;
-  display: inline-block;
-}
-
-.password-container input {
-  padding-right: 40px; /* makes room for the eye */
-}
-
-#togglePassword {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #666;
-}
-
-.clear-card {
-  width: min(700px, 90vw);
-  min-height: 400px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 30px;
-}
-
-/*Login page*/
-.login-background {
-  min-height: 100vh;
-  background-image: url("digi-img/digi-interior4.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.login-row {
-  width: 100%;
-  padding: 0 25px;
-}
-
-.login-email,
-.login-password {
-  width: 220px;
-  max-width: 100%;
-}
-
-.password-hint {
-  font-size: 14px;
-  color: #46462a;
-  margin-top: 8px;
-  min-height: 20px;
-}
-
-.login-header {
-  margin-top: 70px;
-}
-
-.login-submit {
-  white-space: nowrap;
-  background-color: #46462a;
-  color: #f1ecde; 
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 20px;
-  font-size: 17px;
-  border: none;
-}
-
-.password-valid {
-  color: #1e4176;
-  font-size: 17px;
-  font-weight: bold;
-  background-color: #f1ecde96;
-  padding: 10px;
-  border-radius: 15px;
-
-}
-
-.password-invalid {
-  color: #74070d;
-  font-weight: bold;
-  background-color: #f1ecde96;
-  padding: 10px;
-  border-radius: 15px;
-}
-
-/*Signup page*/
-.signup-background {
-  min-height: 100vh;
-  background-image: url("digi-img/digi-interior15.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.signup-row {
-  width: 100%;
-  padding: 0 25px;
-}
-
-.signup-email,
-.signup-password {
-  width: 220px;
-  max-width: 100%;
-}
-
-.signup-header {
-  margin-top: 70px;
-  color: #1e4176;
-}
-
-.signup-submit {
-  white-space: nowrap;
-  background-color: #46462a;
-  color: #f1ecde; 
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 20px;
-  font-size: 17px;
-  border: none;
-}
-
-/*library*/
-.library-main {
-  min-height: calc(100vh - 75px - 140px);
-}
-
-.library-page-background{
-  background-image: url(digi-img/library-background.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.lock-img {
-  display: block;
-  margin: 10px auto;
-  width: 80%;
-  max-width: 300px;
-  height: auto;
-}
-
-.go-connect-button {
-  padding: 10px 20px;
-  background-color: #f1ecde;
-  color: #310f10;
-  text-decoration: none;
-  border-radius: 30px;
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.library-header h1{
-  font-size: 40px;
-}
-
-.library-header p{
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-.library-header h2{
-  padding: 0 30px;
-  color: #3d0b0b;
-}
-
-.empty-library-message {
-  text-align: center;
-  color: #1e4176;
-  font-size: 22px;
-  margin-top: 40px;
-  background-color: #f1ecde;
-  padding: 10px 10px;
-}
-
-.content-library {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.library-content.locked {
-  opacity: 0.5;
-  filter: blur(2px);
-  pointer-events: none;
-}
-
-.library-lock {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 80px;
-  z-index: 10;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-  overflow-y: auto;
-}
-
-.library-lock.show {
-  display: flex;
-}
-
-.logout-button {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #f1ecde;
-  color: #310f10;
-  text-decoration: none;
-  border-radius: 30px;
-  font-family: "Playfair Display", serif;
-  font-weight: bold;
-  transition: 0.3s;
-  z-index: 99;
-  position: fixed;
-  top: 14px;
-  left: 12px;
-}
-
-.report-card {
-  padding: 20px;
-  margin: 10px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  cursor: pointer;
-  max-width: 320px;
-}
-
-.report-card h3{
-  font-weight: bold;
-  font-size: 15px;
-  display: inline-block;
-  padding: 5px 15px;
-  background-color: #1e4176;
-  color: #f1ecde;
-  text-decoration: none;
-  border-radius: 30px;
-
-}
-
-.report-card p {
-  margin-bottom: 2px;
-}
-
-.report-date {
-  color: #74070d;
-  font-size: 28px;
-  font-style: italic;
-}
-
-
-/*saved-report pages*/
-
-#savedReport {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 30px;
-  line-height: 1.7;
-}
-
-#reportDate {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #1e4176;
-  font-size: 20px;
-  font-style: italic;
-}
-
-.back-library-button {
-  display: inline-block;
-  padding: 5px 15px;
-  background-color: #46462a;
-  color: #f1ecde;
-  text-decoration: none;
-  border-radius: 30px;
-  font-family: "Playfair Display", serif;
-  font-size: 17px;
-  font-weight: bold;
-  transition: 0.3s;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-}
-
-.back-library-button:hover {
-  background-color: #74070d;
 }

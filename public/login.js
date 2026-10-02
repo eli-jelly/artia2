@@ -1,17 +1,20 @@
+// importing authentication
 import { auth } from "./firebase.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-/*Allowing user to hide and show the password with the eye toggle*/
+// allowing user to hide and show the password with the eye toggle
 const password = document.getElementById("password");
 const togglePassword = document.getElementById("togglePassword");
-/*If the user clicks the eye icon the password type changes between password and text*/
+
+// runs when user clicks the eye icon to switch between visible and hidden
 togglePassword.addEventListener("click", () => {
     if (password.type === "password") {
         password.type = "text";
         togglePassword.classList.remove("fa-eye");
         togglePassword.classList.add("fa-eye-slash");
-    } else {
+    } 
+    else {
         password.type = "password";
         togglePassword.classList.remove("fa-eye-slash");
         togglePassword.classList.add("fa-eye");
@@ -19,15 +22,13 @@ togglePassword.addEventListener("click", () => {
 });
 
 
-
-/*Making sure the user uses at least 6 charecters when writing the password & cannot contain spaces*/
 const loginForm = document.getElementById("loginForm"); 
 const passwordHint = document.getElementById("passwordHint");
-
-/*Using "input so the function will run every time(live)"*/
+// checks the password live to make sure it has at least 6 characters & doesn't contain spaces
+// the input event runs every time the user changes the password (deletes, adds, replaces characters)
 password.addEventListener("input", () => {
   password.setCustomValidity("");
-  
+
   const length = password.value.length;
   const hasSpace = password.value.includes(" ");
 
@@ -56,6 +57,8 @@ password.addEventListener("input", () => {
 
 const email = document.getElementById("email");
 
+// validates the password 
+// then uses firebase authentication to log the user in
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -66,7 +69,6 @@ loginForm.addEventListener("submit", async (event) => {
     password.reportValidity();
     return;
   }
-
   if (password.value.includes(" ")) {
     password.setCustomValidity(
       "Password cannot contain spaces."
@@ -77,6 +79,7 @@ loginForm.addEventListener("submit", async (event) => {
 
   password.setCustomValidity("");
 
+  // signing in using the email and password entered by the user
   try {
     await signInWithEmailAndPassword(
         auth,
@@ -88,6 +91,7 @@ loginForm.addEventListener("submit", async (event) => {
   window.location.href = "library.html";
   }
   
+  // showing different messages depenting on the firebase login errors
   catch (error) {
     console.error("Login error:", error);
 

@@ -1,8 +1,9 @@
-// this js file mainly controls what happens when the user click send
+// this JS file controls creating and saving the user's report
 
-// importing fireBase
+// importing fireBase tools I need to save reports
 import { db, auth, collection, addDoc } from "./firebase.js";
 
+// stores the current report information so it can be saved later
 const saveReportBtn = document.getElementById("saveReportBtn");
 
 let currentReport = "";
@@ -12,17 +13,18 @@ let currentImageCount = 0;
 let reportSaved = false;
 let isSaving = false;
 
-// Waiting for user to click the button, and prevent page from refreshing
+// runs when the user clicks "send"
+// & prevents the page from refreshing
 document.getElementById("sendBtn").addEventListener("click", async (event) => {
   event.preventDefault();
   
-  // Taking user's input
+  // gets the user's additional prompt request uploaded images, and output area
   const prompt = document.getElementById("prompt").value;
   const imageInput = document.getElementById("image");
   const output = document.getElementById("output");
 
 
-  // max images is 5 feedback
+  // prevents the user from uploading more than 5 images feedback
   if (imageInput.files.length > 5) {
     output.textContent = "You can upload a maximum of 5 images.";
     currentReport = "";
@@ -32,7 +34,7 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
     return;
   }
 
-  // images only check
+  // checks each uploaded file to make sure it is an image feedback
   for (const file of imageInput.files) {
     if (!file.type.startsWith("image/")) {
       output.textContent = "Please upload image files only.";
@@ -44,9 +46,21 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
     }
   }
 
-  // sending nothing check
-  if (imageInput.files.length === 0 && prompt.trim() === "") {
-    output.textContent = "Please upload an image or enter a request first.";
+  // checks that each of the uploaded image is not bigger than 10MB
+  for (const file of imageInput.files) {
+    if (file.size > 10 * 1024 * 1024) {
+      output.textContent = "Each image must be 10MB or smaller.";
+      currentReport = "";
+      currentPrompt = "";
+      currentImageCount = 0;
+      saveReportBtn.style.display = "none";
+      return;
+    }
+  }
+
+  // prevents user from sending if they didn't upload an image
+  if (imageInput.files.length === 0) {
+    output.textContent = "Please upload an image first.";
     currentReport = "";
     currentPrompt = "";
     currentImageCount = 0;
@@ -56,30 +70,34 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
   
   output.textContent = "Loading...";
 
-  // creates the form data, 
-  // then sends request to AI api, 
-  // loads response in bacgrounf then shoes the resuts
+  // creates FormData with the user's prompt and images
+  // then sends it to the backend and waits for the AI response
+  // then displays the result on the page
   try {
     const formData = new FormData();
     formData.append("prompt", prompt);
 
-    // Loop to add all the uploaded image
+    // loop to add all the uploaded images
     for (let i = 0; i < imageInput.files.length; i++) {
       formData.append("images", imageInput.files[i]);
     }
 
-    // Sending data to the backend
+    // sending FormData to the backend route
     const response = await fetch("/analyze-room", {
       method: "POST",
       body: formData
     });
 
+    // converts the backend response from JSON so the we can use the result
     const data = await response.json();
+
+    // if the request failed- stops the whole process
+    // sends the error to the catch block
     if (!response.ok) {
       throw new Error(data.error || "Something went wrong");
     }
 
-    // Showing results
+    // displays the AI result in the page
     const resultBox = document.getElementById("result");
     resultBox.style.display = "block";
     resultBox.innerText = data.result;
@@ -89,13 +107,14 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
     currentImageCount = imageInput.files.length;
     reportSaved = false;
 
-    /*Show save button because a report now exists*/
+    // shows the save button because a report now exists
     saveReportBtn.style.display = "inline-block";
 
-    /*Hiding the "Nothing yet..."*/
+    // hiding the "Nothing yet..."/ "Loading..."
     output.style.display = "none";
   }
 
+  // shows the high demand or went wrong message if the API AI fails
   catch (error) {
     console.error("script error:", error);
     if (error.message.includes("503") || error.message.includes("high demand")) {
@@ -108,8 +127,10 @@ document.getElementById("sendBtn").addEventListener("click", async (event) => {
 });
 
 
-
+// saving the current report to firebase when the user clicks the save button
 saveReportBtn.addEventListener("click", async () => {
+  // if a user is not logged in it sends them to connect 
+  // either through creating an account or logging in
   if (!auth.currentUser) {
     alert("Please log in or create an account to save your report.");
     window.location.href = "connect.html";
@@ -128,6 +149,7 @@ saveReportBtn.addEventListener("click", async () => {
   saveReportBtn.disabled = true;
 
   try {
+    // saveing the report details to the reports collection in firebase
     await addDoc(collection(db, "reports"), {
       userId: auth.currentUser.uid,
       prompt: currentPrompt,
